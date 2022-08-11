@@ -1,7 +1,15 @@
-import '../styles/globals.css'
+import {Toaster} from 'react-hot-toast';
+import {AppProvider} from '../context/AppContext';
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+import '../styles/globals.css';
+
+function MyApp({Component, pageProps}) {
+	return (
+		<AppProvider>
+			<Component {...pageProps} />
+			<Toaster />
+		</AppProvider>
+	);
 }
 
-export default MyApp
+export default MyApp;
