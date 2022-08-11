@@ -32,6 +32,22 @@ async function handler(req, res) {
 			});
 		}
 	}
+
+	if (req.method === 'DELETE') {
+		try {
+			const todo = await Todo.findByIdAndDelete(req.query.id);
+
+			return res.status(200).json({
+				statusCode: 200,
+				data: todo,
+			});
+		} catch (error) {
+			return res.status(500).json({
+				statusCode: 500,
+				message: 'Internal server error',
+			});
+		}
+	}
 }
 
 export default connectDB(handler);

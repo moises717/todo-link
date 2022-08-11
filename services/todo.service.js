@@ -34,3 +34,16 @@ export const updateTodo = async ({id, data}) => {
 
 	return request;
 };
+
+export const deleteTodo = async (id) => {
+	try {
+		const request = await customFetch(`/api/todo/${id}`, {
+			options: {
+				method: 'DELETE',
+			},
+		});
+		return request;
+	} catch (error) {
+		return error;
+	}
+};
