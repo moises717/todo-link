@@ -1,7 +1,7 @@
-import toast from 'react-hot-toast';
 import {useFocus} from './useFocus';
 import useAppContext from './useAppContext';
 import {createTodo} from '../services/todo.service';
+import {toastMessage} from '../utils/toast';
 
 export const useTodoForm = () => {
 	const {setReload, setModal, modal} = useAppContext();
@@ -14,13 +14,14 @@ export const useTodoForm = () => {
 		const {value} = e.target;
 		if (!value) return toast.error('Ingrese una tarea');
 
-		const {statusCode} = await createTodo({data: {title: value}});
-
-		if (statusCode !== 200) return toast.error('Error al crear la tarea');
-		toast.success('Tarea creada');
-		setReload((prev) => !prev);
-		setModal(false);
-		e.target.value = '';
+		toastMessage(createTodo({data: {title: value}}), {
+			loading: 'Agregando tarea 🙂 ... ',
+			success: () => {
+				setReload((prev) => !prev);
+				e.target.value = '';
+				return 'Tarea agregada 🤩';
+			},
+		});
 	};
 
 	return {

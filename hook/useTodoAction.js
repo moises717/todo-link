@@ -1,15 +1,15 @@
 import {useState} from 'react';
-import toast from 'react-hot-toast';
 
 import useAppContext from '../hook/useAppContext';
 import {deleteTodo, updateTodo} from '../services/todo.service';
+import {toastMessage} from '../utils/toast';
 
 export const useTodoAction = ({completed, id}) => {
 	const [checked, setChecked] = useState(completed);
 	const {setReload} = useAppContext();
 
 	const handleCheck = async () => {
-		toast.promise(updateTodo({id, data: {completed: !checked}}), {
+		toastMessage(updateTodo({id, data: {completed: !checked}}), {
 			loading: 'Actualizado tarea 🤨 ...',
 			success: () => {
 				setChecked(!checked);
@@ -20,11 +20,12 @@ export const useTodoAction = ({completed, id}) => {
 	};
 
 	const onDelete = async (id) => {
-		toast.promise(deleteTodo(id), {
-			loading: 'Eliminando...',
-			success: () => {
+		toastMessage(deleteTodo(id), {
+			loading: 'Eliminando tarea 🤨 ...',
+			success: ({statusCode}) => {
+				if (statusCode !== 200) return 'Error al eliminar tarea 😢';
 				setReload((prev) => !prev);
-				return 'Tarea eliminada 🙂';
+				return 'Tarea eliminada 🤨';
 			},
 		});
 	};
