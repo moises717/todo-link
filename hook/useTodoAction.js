@@ -6,7 +6,7 @@ import {toastMessage} from '../utils/toast';
 
 export const useTodoAction = ({completed, id}) => {
 	const [checked, setChecked] = useState(completed);
-	const {setReload} = useAppContext();
+	const {setReload, setIsUpdate, setModal, setTodo} = useAppContext();
 
 	const handleCheck = async () => {
 		toastMessage(updateTodo({id, data: {completed: !checked}}), {
@@ -29,6 +29,14 @@ export const useTodoAction = ({completed, id}) => {
 			},
 		});
 	};
+	const onUpdate = async ({title, _id}) => {
+		setIsUpdate(true);
+		setModal(true);
+		setTodo({
+			title,
+			id: _id,
+		});
+	};
 
 	return {
 		handleCheck,
@@ -36,5 +44,6 @@ export const useTodoAction = ({completed, id}) => {
 		checked,
 		setChecked,
 		setReload,
+		onUpdate,
 	};
 };

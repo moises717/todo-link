@@ -6,8 +6,8 @@ export const TodoForm = () => {
 		<input
 			type="text"
 			placeholder="Enter para agregar ↵"
-			value={todo}
-			onChange={(e) => setTodo(e.target.value)}
+			value={todo.title}
+			onChange={(e) => setTodo((prev) => ({...prev, title: e.target.value}))}
 			ref={onFocus}
 			onKeyUp={onPressEnter}
 		/>
