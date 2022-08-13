@@ -1,14 +1,16 @@
 import {useRouter} from 'next/router';
 import toast from 'react-hot-toast';
+
+import {copyToClipboard} from '../../utils/copyText';
 import {ArrowLeft} from '../../icons/SvgIcons';
 
 export const Header = () => {
 	const router = useRouter();
-	const shareInfo = async () => {
-		navigator.clipboard.writeText(window.location.href);
-		toast.success('Link copied to clipboard', {
-			position: 'buttom-right',
-		});
+
+	const copyText = async () => {
+		const text = window.location.href;
+		copyToClipboard(text);
+		toast.success('Enlace copiado al portapapeles');
 	};
 
 	return (
@@ -19,8 +21,8 @@ export const Header = () => {
 			<div className="header-content">
 				<span>Lista de tareas</span>
 			</div>
-			<div className="arrow-right" onClick={shareInfo}>
-				<i className="fa fa-share"></i>
+			<div className="arrow-right" onClick={copyText} title="Copiar al portapapeles">
+				<i className="fa fa-clipboard"></i>
 			</div>
 		</header>
 	);
