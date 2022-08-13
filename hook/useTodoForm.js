@@ -22,6 +22,7 @@ export const useTodoForm = () => {
 					if (statusCode !== 200) return 'Error al actualizar tarea 😢';
 					setReload((prev) => !prev);
 					setTodo({title: '', id: ''});
+					setModal(false);
 					return 'Tarea actualizada 🤨';
 				},
 			});
