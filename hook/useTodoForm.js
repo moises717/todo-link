@@ -27,7 +27,7 @@ export const useTodoForm = () => {
 			});
 		}
 
-		toastMessage(createTodo({data: {title: todo}}), {
+		toastMessage(createTodo({data: {title: todo.title}}), {
 			loading: 'Agregando tarea 🙂 ... ',
 			success: () => {
 				setReload((prev) => !prev);
