@@ -10,9 +10,18 @@ export const StartPage = () => {
 
 	return (
 		<div className="start-page">
+			<div className="start-page-header">
+				<h1>TODO LINK</h1>
+			</div>
 			<div className="home-actions">
-				<button onClick={() => newTask(false)}>Nueva tarea</button>
-				<button onClick={() => newTask(true)}>Crear nueva tarea</button>
+				<button onClick={() => newTask(false)}>
+					{' '}
+					<i className="fa fa-list"></i> Mi enlace actual
+				</button>
+				<button onClick={() => newTask(true)}>
+					{' '}
+					<i className="fa fa-plus"></i>Crear nuevo enlace de tareas
+				</button>
 			</div>
 		</div>
 	);
