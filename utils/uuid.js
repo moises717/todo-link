@@ -6,16 +6,14 @@ const generateUUID = () => {
 	});
 };
 
-export const getUniqueId = () => {
-	const uniqueUid = localStorage.getItem('uniqueId');
-	if (uniqueUid) return uniqueUid;
-	createUniqueId();
-	getUniqueId();
-};
+export const getUniqueId = () => localStorage.getItem('uniqueId');
 
 export const createUniqueId = (newId) => {
 	if (newId) removeUniqueId();
+	if (getUniqueId()) return getUniqueId();
 	localStorage.setItem('uniqueId', generateUUID());
+
+	return getUniqueId();
 };
 
 const removeUniqueId = () => localStorage.removeItem('uniqueId');
