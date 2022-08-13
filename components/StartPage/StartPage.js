@@ -3,15 +3,17 @@ import {createUniqueId} from '../../utils/uuid';
 
 export const StartPage = () => {
 	const router = useRouter();
-	const newTask = () => {
-		const newUrl = createUniqueId();
+	const newTask = (newId) => {
+		const newUrl = createUniqueId(newId);
 		router.push(`/todo/${newUrl}`);
 	};
 
 	return (
 		<div className="start-page">
-			<button>Tarea</button>
-			<button onClick={newTask}>Crear tareas</button>
+			<div className="home-actions">
+				<button onClick={() => newTask(false)}>Nueva tarea</button>
+				<button onClick={() => newTask(true)}>Crear nueva tarea</button>
+			</div>
 		</div>
 	);
 };
