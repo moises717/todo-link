@@ -1,4 +1,5 @@
 import toast from 'react-hot-toast';
+import {useRouter} from 'next/router';
 
 import {useFocus} from './useFocus';
 import useAppContext from './useAppContext';
@@ -8,6 +9,7 @@ import {toastMessage} from '../utils/toast';
 export const useTodoForm = () => {
 	const {setReload, setModal, modal, setTodo, todo, isUpdate} = useAppContext();
 	const {ref: onFocus} = useFocus({listener: modal});
+	const todoId = useRouter().query.id;
 
 	const onPressEnter = async (e) => {
 		if (e.key === 'Escape' || e.keyCode === 27) setModal(false);
@@ -28,7 +30,7 @@ export const useTodoForm = () => {
 			});
 		}
 
-		toastMessage(createTodo({data: {title: todo.title}}), {
+		toastMessage(createTodo({data: {title: todo.title, userId: todoId}}), {
 			loading: 'Agregando tarea 🙂 ... ',
 			success: () => {
 				setReload((prev) => !prev);

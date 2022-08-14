@@ -1,13 +1,10 @@
 import customFetch from '../utils/customFetch';
-import {getUniqueId} from '../utils/uuid';
 
 export const createTodo = async ({data}) => {
-	const newData = {...data, userId: getUniqueId()};
-
 	const request = await customFetch('/api/todo', {
 		options: {
 			method: 'POST',
-			body: JSON.stringify(newData),
+			body: JSON.stringify(data),
 		},
 	});
 
