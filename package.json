@@ -2,7 +2,8 @@
   "name": "todo-link",
   "description": "Crea un enlace único de tareas que puedes compartir con cualquier usuario.",
   "keywords": [
-    "mongodb"
+    "mongodb",
+    "react"
   ],
   "version": "0.1.0",
   "private": true,
