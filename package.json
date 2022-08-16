@@ -1,6 +1,6 @@
 {
   "name": "todo-link",
-  "description": "Aplicación web para compartir tareas mediate enlaces.",
+  "description": "Crea un enlace único de tareas que puedes compartir con cualquier usuario.",
   "keywords": [
     "mongodb"
   ],
